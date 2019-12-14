@@ -1,0 +1,17 @@
+# Code
+[x] door_id, value uniquely identifies a code
+[x] disabled_at
+[x] papertrail?
+
+# Code Service
+[x] disable / enable
+
+# DoorKeeperService
+try to find code from value, door
+
+# AccessLog
+[x] code needs to be optional
+[x] add denied reasons
+  how to encode denied reasons? jsonb? another table?
+
+# Audio 2FA

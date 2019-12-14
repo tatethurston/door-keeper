@@ -1,0 +1,78 @@
+version: 2
+
+jobs:
+  build:
+    parallelism: 1
+    docker:
+      - image: circleci/ruby:2.6.4-node-browsers
+        environment:
+          RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: root
+      - image: circleci/postgres:11.2-ram
+        environment:
+          POSTGRES_USER: root
+    working_directory: ~/repo
+    steps:
+      - checkout
+      # Gems
+      - restore_cache:
+          keys:
+            - bundler-dependencies-{{ checksum "Gemfile.lock" }}
+            - bundler-dependencies-
+      - run:
+          name: Bundler Install
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: bundler-dependencies-{{ checksum "Gemfile.lock" }}
+      # Node modules
+      - restore_cache:
+          keys:
+            - yarn-dependencies-{{ checksum "yarn.lock" }}
+            - yarn-dependencies-
+      - run:
+          name: Yarn Install
+          command: |
+            yarn install --ignore-engines --cache-folder ~/.cache/yarn
+      - save_cache:
+          key: yarn-dependencies-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      # Frontend
+      - restore_cache:
+          keys:
+            - assets-{{ .Branch }}-{{ .Revision }}
+            - assets-{{ .Branch }}
+            - assets
+      - run: bundle exec rake assets:precompile
+      - save_cache:
+          paths:
+            - ./public/packs-test
+            - ./tmp/cache/webpacker
+          key: assets-{{ .Branch }}-{{ .Revision }}
+      # Database setup
+      - run: bundle exec rails db:migrate
+      # Restore test timing data
+      - restore_cache:
+          keys:
+            - v1-test-times-{{ .Branch }}
+            - v1-test-times-master
+      # run tests!
+      - run:
+          name: run tests
+          command: |
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
+            be rspec $TEST_FILES
+      # collect reports
+      - store_test_results:
+          path: ./tmp/test-results
+      - store_artifacts:
+          path: ./tmp/test-results
+          destination: test-results
+      - store_artifacts:
+          path: ./tmp/screenshots
+          destination: screenshots

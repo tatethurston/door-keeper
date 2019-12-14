@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# This script will replace your local DB contents with the contents
+# of Production's follower DB. All data is deleted from your local
+# database before restoring from Production.
+
+set -euo pipefail
+
+dropdb -h localhost canary_development || true
+heroku pg:pull #{HEROKU_DB_COLOR} canary_development --app #{HEROKU_APP}

@@ -1,0 +1,6 @@
+log/*.log
+.byebug_history
+public/*
+frontend/.next/*
+frontend/node_modules/*
+frontend/out/*
