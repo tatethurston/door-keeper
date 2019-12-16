@@ -6,6 +6,7 @@ class TwilioController < ActionController::API
         <Gather numDigits="4" timeout="30" action="#{access_twilio_index_path}">
           <Say>Hello. Please enter your 4 digit security code.</Say>
         </Gather>
+        <Say>I didn't receive any input. Goodbye!</Say>
       </Response>
     XML
   end
