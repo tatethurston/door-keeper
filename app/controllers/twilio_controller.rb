@@ -3,8 +3,8 @@ class TwilioController < ActionController::API
     render xml: <<~XML
       <?xml version="1.0" encoding="UTF-8"?>
       <Response>
-        <Gather numDigits="4" timeout="30" action="#{access_twilio_index_path}">
-          <Say>Hello. Please enter your 4 digit security code.</Say>
+        <Gather numDigits="4" timeout="10" action="#{access_twilio_index_path}">
+          <Say>Please enter your 4 digit code, followed by the pound sign.</Say>
         </Gather>
         <Say>I didn't receive any input. Goodbye!</Say>
       </Response>
