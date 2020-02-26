@@ -59,6 +59,7 @@ GEM
     annotate (3.0.3)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
+    ast (2.4.0)
     bcrypt (3.1.13)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
@@ -136,6 +137,8 @@ GEM
     paper_trail (10.3.1)
       activerecord (>= 4.2)
       request_store (~> 1.1)
+    parser (2.7.0.2)
+      ast (~> 2.4.0)
     pg (1.1.4)
     puma (3.12.2)
     pundit (2.1.0)
@@ -179,6 +182,8 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     ruby_dep (1.5.0)
+    scout_apm (2.6.6)
+      parser
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -219,6 +224,7 @@ DEPENDENCIES
   puma (~> 3.12)
   pundit
   rails (~> 6.0)
+  scout_apm
   spring
   spring-watcher-listen (~> 2.0.0)
 

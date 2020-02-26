@@ -12,6 +12,7 @@ gem "pg", ">= 0.18", "< 2.0"
 gem "puma", "~> 3.12"
 gem "pundit"
 gem "paper_trail"
+gem "scout_apm"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
