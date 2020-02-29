@@ -6,7 +6,8 @@ class TwilioController < ActionController::API
         <Gather numDigits="4" timeout="10" action="#{access_twilio_index_path}">
           <Say>Please enter your 4 digit code, followed by the pound sign.</Say>
         </Gather>
-        <Say>I didn't receive any input. Goodbye!</Say>
+        <Say>I didn't receive any input. Please try again.</Say>
+        <Play digits="w*"/>
       </Response>
     XML
   end
@@ -38,6 +39,7 @@ class TwilioController < ActionController::API
             <?xml version="1.0" encoding="UTF-8"?>
             <Response>
               <Say>Sorry, I don't recognize that code. Please try again.</Say>
+              <Play digits="w*"/>
             </Response>
           XML
         else
@@ -45,6 +47,7 @@ class TwilioController < ActionController::API
             <?xml version="1.0" encoding="UTF-8"?>
             <Response>
               <Say>That code is not authorized for this door at this time.</Say>
+              <Play digits="w*"/>
             </Response>
           XML
         end
