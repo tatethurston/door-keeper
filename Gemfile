@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.6.5"
+ruby "2.7.0"
 gem "rails", "~> 6.0"
 
 gem "bootsnap", ">= 1.4.2", require: false
@@ -9,7 +9,7 @@ gem "bugsnag"
 gem "devise"
 gem "omniauth-google-oauth2"
 gem "pg", ">= 0.18", "< 2.0"
-gem "puma", "~> 3.12"
+gem "puma", "~> 4.3.3"
 gem "pundit"
 gem "paper_trail"
 gem "scout_apm"

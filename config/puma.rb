@@ -8,4 +8,3 @@ rackup      DefaultRackup
 port        ENV["PORT"]     || 5000
 environment ENV["RAILS_ENV"] || "development"
 
-preload_app!
