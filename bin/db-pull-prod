@@ -6,5 +6,5 @@
 
 set -euo pipefail
 
-dropdb -h localhost canary_development || true
-heroku pg:pull #{HEROKU_DB_COLOR} canary_development --app #{HEROKU_APP}
+dropdb -h localhost door_keeper_development || true
+heroku pg:pull DATABASE_URL door_keeper_development --app door-keeper-production

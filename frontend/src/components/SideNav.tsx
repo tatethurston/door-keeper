@@ -1,38 +1,51 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Sidebar, Menu, Icon, SidebarProps } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { AppURL } from "src/utils/routes";
+import { AppRoute } from "src/utils/routes";
+import { APIRoute, API } from "src/utils/api";
+import { UserContext } from "src/utils/user-context";
 
 interface SideNavProps extends SidebarProps {}
 
-export const SideNav: React.FC<SideNavProps> = props => (
-  <Sidebar
-    as={Menu}
-    animation="overlay"
-    direction="left"
-    icon="labeled"
-    inverted
-    vertical
-    width="thin"
-    {...props}
-  >
-    <Link to={AppURL.Activity}>
-      <Menu.Item as="a">
+function useLogout(): () => void {
+  const { setUser } = useContext(UserContext);
+
+  return async () => {
+    await API.get(APIRoute.Logout);
+    setUser(undefined);
+  };
+}
+
+export const SideNav: React.FC<SideNavProps> = props => {
+  const logout = useLogout();
+
+  return (
+    <Sidebar
+      as={Menu}
+      animation="overlay"
+      direction="left"
+      icon="labeled"
+      inverted
+      vertical
+      width="thin"
+      {...props}
+    >
+      <Menu.Item as={Link} to={AppRoute.Activity}>
         <Icon name="clipboard list" />
         Activity Log
       </Menu.Item>
-    </Link>
-    <Link to={AppURL.Keys}>
-      <Menu.Item as="a">
+      <Menu.Item as={Link} to={AppRoute.Keys}>
         <Icon name="key" />
         Keys
       </Menu.Item>
-    </Link>
-    <Link to={AppURL.Doors}>
-      <Menu.Item as="a">
+      <Menu.Item as={Link} to={AppRoute.Doors}>
         <Icon name="building" />
         Doors
       </Menu.Item>
-    </Link>
-  </Sidebar>
-);
+      <Menu.Item as="a" onClick={logout}>
+        <Icon name="log out" />
+        Log Out
+      </Menu.Item>
+    </Sidebar>
+  );
+};

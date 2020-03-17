@@ -1,4 +1,4 @@
-export const AppURL = {
+export const AppRoute = {
   Root: "/",
   Activity: "/activity",
   Doors: "/doors",

@@ -9,4 +9,10 @@ class AuthController < ApplicationController
       :image,
     ])
   end
+
+  def destroy
+    sign_out current_user
+
+    head :ok
+  end
 end
