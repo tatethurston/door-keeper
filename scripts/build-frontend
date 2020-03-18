@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# This script will build the React frontend and move the contents to the
+# public folder so that Rails can serve the static assets
+
+set -euo pipefail
+
+rm -rf public/*
+
+pushd frontend
+yarn install
+yarn build
+mv build/* ../public
+popd
+
