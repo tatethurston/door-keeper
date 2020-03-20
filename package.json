@@ -6,7 +6,7 @@
   "author": "tate.thurston@gmail.com",
   "license": "MIT",
   "scripts": {
-    "start": "./scripts/build-frontend"
+    "build": "./scripts/build-frontend"
   },
   "engines": {
     "node": "12.16.1",
