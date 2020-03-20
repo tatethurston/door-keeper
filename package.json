@@ -1,0 +1,16 @@
+{
+  "name": "door-keeper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:tatethurston/door-keeper.git",
+  "author": "tate.thurston@gmail.com",
+  "license": "MIT",
+  "scripts": {
+    "start": "./scripts/build-frontend"
+  },
+  "engines": {
+    "node": "12.16.1",
+    "yarn": ">=1.12.3"
+  },
+  "cacheDirectories": ["frontend/node_modules"]
+}
