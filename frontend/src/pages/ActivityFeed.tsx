@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Icon, Item, Feed } from "semantic-ui-react";
+import { Header, Icon, Feed } from "semantic-ui-react";
 import formatRelative from 'date-fns/formatRelative';
 import parseISO from 'date-fns/parseISO';
 import { Page } from "src/layouts/Page";
@@ -11,7 +11,6 @@ export const ActivityFeed: React.FC = () => {
   const activity = useAPI<any>(APIRoute.AccessLogs);
   const loading = !activity.value;
   const now = new Date();
-  const LIMIT = 10;
 
   return (
     <Page
@@ -25,7 +24,7 @@ export const ActivityFeed: React.FC = () => {
       { loading ?
         <Loading /> :
         <Feed>
-          { activity.value.slice(0, LIMIT).map((event: any) =>
+          { activity.value.map((event: any) =>
             <Feed.Event key={event.id}>
               <Feed.Content>
                 <Feed.Summary>

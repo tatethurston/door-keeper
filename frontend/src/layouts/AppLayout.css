@@ -6,6 +6,10 @@ body,
   overflow: hidden;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .app-content {
   display: flex;
   flex-direction: column;

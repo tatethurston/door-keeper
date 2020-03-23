@@ -2,6 +2,8 @@ class AccessLogsController < ApplicationController
   def index
     access_logs = policy_scope(AccessLog)
       .includes(:door, :code)
+      .order(created_at: :desc)
+      .limit(50)
 
     render json: access_logs.as_json(include: [:door, :code])
   end
