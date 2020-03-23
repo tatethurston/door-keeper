@@ -1,3 +1,9 @@
 .page {
   padding-top: 2rem;
+  display: flex;
+  flex: 1;
+}
+
+.page-content {
+  flex: 1;
 }

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   scope "/api" do
     resources :doors, only: [:index, :show]
     resources :codes, only: [:index, :show]
-    resources :access_logs, only: [:index]
+    resources :access_logs, only: [:index, :show]
 
     resources :twilio, only: [:index] do
       collection do

@@ -12,8 +12,13 @@ axios.defaults.paramsSerializer = params =>
 
 export const API = axios;
 
+export type APIPath = typeof APIRoute[keyof typeof APIRoute];
+
 export const APIRoute = {
   Auth: "/users/auth",
   Login: "/users/auth/google_oauth2",
-  Logout: "/users/auth/sign_out"
-};
+  Logout: "/users/auth/sign_out",
+  Codes: "/api/codes",
+  Doors: "/api/doors",
+  AccessLogs: "/api/access_logs",
+} as const;

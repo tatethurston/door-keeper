@@ -1,13 +1,15 @@
 class AccessLogsController < ApplicationController
   def index
-    access_logss = policy_scope(AccessLog)
+    access_logs = policy_scope(AccessLog)
+      .includes(:door, :code)
 
-    render access_logss.as_json
+    render json: access_logs.as_json(include: [:door, :code])
   end
 
   def show
-    access_logs = policy_scope(AccessLog).find(params[:id])
+    access_log = policy_scope(AccessLog).find(params[:id])
+      .includes(:door, :code)
 
-    render access_logs.as_json
+    render json: access_log.as_json(include: [:door, :code])
   end
 end

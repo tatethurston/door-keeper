@@ -34,9 +34,11 @@
     "react-scripts": "3.4.0",
     "react-use": "^13.27.0",
     "semantic-ui-react": "^0.88.2",
+    "source-map-explorer": "^2.4.1",
     "typescript": "~3.7.2"
   },
   "scripts": {
+    "analyze": "source-map-explorer --gzip 'build/static/js/*.js'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

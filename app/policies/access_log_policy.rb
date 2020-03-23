@@ -3,7 +3,7 @@ class AccessLogPolicy < ApplicationPolicy
     def resolve
       scope
         .joins(:door)
-        .where(door: { organization_id: @user.organization_id })
+        .where(doors: { organization_id: @user.organization_id })
     end
   end
 end

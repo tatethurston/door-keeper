@@ -17,7 +17,7 @@ export const AppLayout: React.FC = ({ children }) => {
         onClick={() => setVisible(false)}
       />
       <Ref innerRef={contentRef}>
-        <Sidebar.Pusher dimmed={visible}>
+        <Sidebar.Pusher className="app-content" dimmed={visible}>
           <Nav onClick={() => setVisible(true)} />
           {children}
         </Sidebar.Pusher>
